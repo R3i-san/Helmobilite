@@ -1,0 +1,79 @@
+﻿@model ProjetWeb.Models.Truck
+@{
+    ViewData["Title"] = "Edit Truck";
+}
+
+<h1 class="fw-bold text-decoration-underline">Édition d'un camion</h1>
+<a class="w-25 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<p class="alert-danger">@TempData["Message"]</p>
+<div class="w-25 row">
+    <div>
+        <form asp-action="Edit" class="border border-primary border-4 rounded-3 bg-white">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mx-auto p-2">
+                <select asp-for="Brand" class="form-control" asp-items="ViewBag.Brands"></select>
+                <label asp-for="Brand" class="control-label">Marque</label>
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <select asp-for="Model" class="form-control" asp-items="ViewBag.Models"></select>
+                <label asp-for="Model" class="control-label">Modèle</label>
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input id="plate" asp-for="Plate" class="form-control" type="text"></input>
+                <label asp-for="Plate" class="control-label">Plaque Belge (Ex: 1-ABC-123)</label>
+                <span id="plateError" asp-validation-for="Plate" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <select asp-for="Types" class="form-control" asp-items="ViewBag.Types"></select>
+                <label asp-for="Types" class="control-label">Type de license</label>
+                <span asp-validation-for="Types" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input id="maxWeight" asp-for="MaxWeight" class="form-control" type="number"></input>
+                <label asp-for="MaxWeight" class="control-label">Tonne Max</label>
+                <span id="maxWeightError" asp-validation-for="MaxWeight" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input id="button" type="submit" value="Modifer" class="btn btn-primary p-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    const Plate = document.getElementById("plate")
+    const MaxWeight = document.getElementById("maxWeight")
+    const PlateError = document.getElementById("plateError")
+    const MaxWeightError = document.getElementById("maxWeightError")
+    const RegexPlate = new RegExp("1-[A-Z]{3}-[0-9]{3}")
+    const button = document.getElementById("button")
+
+    console.log(Plate);
+    console.log(MaxWeight);
+    console.log(PlateError);
+    console.log(MaxWeightError);
+
+    Plate.addEventListener('change', () => {
+        if (!Plate.value.match(RegexPlate)) {
+            PlateError.innerHTML = "format incorrect"
+            button.disabled = true
+        } else {
+            PlateError.innerHTML = ""
+            button.disabled = false
+        }
+    })
+
+    MaxWeight.addEventListener('change', () => {
+        if (MaxWeight.value <= 0) {
+            MaxWeightError.innerHTML = "le poids ne peut pas être en dessous ou égale à 0"
+            button.disabled = true
+        } else {
+            MaxWeightError.innerHTML = ""
+            button.disabled = false
+        }
+    })
+
+</script>

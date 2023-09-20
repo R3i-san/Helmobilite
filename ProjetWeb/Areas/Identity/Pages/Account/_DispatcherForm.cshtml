@@ -1,0 +1,18 @@
+﻿@model RegisterModel
+
+<div id="DispatcherForm">
+
+    <div class="form-floating mx-auto p-2">
+        <select asp-for="Input.StudyLvl" class="form-control" autocomplete="username" aria-required="true">
+            
+            <option>CESS</option>
+            <option>Bachelier</option>
+            <option>Licencier</option>
+
+        </select>
+
+        <label asp-for="Input.StudyLvl" class="form-label"></label>
+        <span asp-validation-for="Input.StudyLvl" class="text-danger"></span>
+    </div>
+
+</div>

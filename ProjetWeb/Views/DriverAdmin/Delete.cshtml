@@ -1,0 +1,43 @@
+﻿@model ProjetWeb.ViewModels.ListDriverViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="fw-bold text-decoration-underline pb-3">Delete</h1>
+
+<h3>etes-vous sur de vouloir supprimer ce conducteur ?</h3>
+<a class="w-50 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<div class="w-50 bg-white border border-3 border-primary rounded-3 p-2">
+    <dl class="row">
+        <dt class="col-sm-5">
+            Nom
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-5">
+            Matricule
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Matricule)
+        </dd>
+        <dt class="col-sm-5">
+            Email
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-5">
+            Permis
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.License)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger p-2" />
+    </form>
+</div>

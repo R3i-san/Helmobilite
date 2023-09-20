@@ -1,0 +1,25 @@
+﻿@model ProjetWeb.ViewModels.ListDriverViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="fw-bold text-decoration-underline">Changement de permis</h1>
+<a class="w-25 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<h4>changer le permis de @Model.Name</h4>
+<hr />
+<div class="w-25 row">
+    <div>
+        <form asp-action="Edit" class="border border-primary border-4 rounded-3 bg-white">
+            <div class="form-floating mx-auto p-2">
+                <select asp-for="License" class="form-control" asp-items="ViewBag.Licenses"></select>
+                <label asp-for="License" class="control-label">changer le permis</label>
+                <span asp-validation-for="License" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input type="submit" value="sauvegarder" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

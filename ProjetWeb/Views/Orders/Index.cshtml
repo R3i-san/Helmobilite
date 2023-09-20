@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ProjetWeb.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="fw-bold text-decoration-underline">Vos commandes</h1>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+    <a class="btn btn-success me-md-2" asp-action="Create"> faire une commande </a>
+</div>
+<div class="justify-content-start w-75 col-12">
+    <p class="text-black">
+        Filtrer les commandes par :
+    </p>
+    <a asp-action="Index" class="btn btn-primary p-2" asp-route-all="true">Toutes</a> |
+    <a asp-action="Index" class="btn btn-primary p-2" asp-route-delivered="false">En cours</a> |
+    <a asp-action="Index" class="btn btn-primary p-2" asp-route-delivered="true">Livrées</a>
+</div>
+
+
+<table class="table table-striped w-75 bg-white">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Delivered)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Delivered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                    <a asp-action="Details" asp-route-id="@item.Id"><img src="~/img/detail.png" width="25px" height="25px" /></a>|
+                    @if (!item.Accepted)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/img/edit.png" width="25px" height="30px" /></a>
+                    }
+                    |
+                    @if (!item.Accepted)
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/img/delete.png" width="25px" height="25px" /></a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

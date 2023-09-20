@@ -1,0 +1,25 @@
+﻿@model ProjetWeb.ViewModels.StatFilterViewModel
+
+<form asp-action="Filter" method="post">
+
+    <input asp-for="FilterName" type="hidden" value="@ViewData["Filter"]" />
+
+    @if (ViewData["Filter"].Equals("Driver"))
+    {
+        <label asp-for="DriverName" class="control-label"></label>
+        <input asp-for="DriverName" value="Anthony Dare" />
+    }
+
+    else if (ViewData["Filter"].Equals("Customer"))
+    {
+        <label asp-for="CustomerName" class="control-label"></label>
+        <input asp-for="CustomerName" />
+    }
+    else
+    {
+        <label asp-for="DeliveryDate" class="control-label"></label>
+        <input asp-for="DeliveryDate" />
+    }
+    <input type="submit" value="Rechercher" />
+
+</form>

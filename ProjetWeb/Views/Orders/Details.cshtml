@@ -1,0 +1,57 @@
+﻿@model ProjetWeb.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="fw-bold text-decoration-underline pb-3">Détail de la commande</h1>
+<a class="w-50 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+
+<div class="w-50 bg-white border border-3 border-primary rounded-3 p-2">
+    <h4>Votre commande</h4>
+    <dl class="row">
+        <dt class = "col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class="col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+        <dt class="col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+        <dt class="col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class="col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.Delivered)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.Delivered)
+        </dd>
+        <dt class="col-sm-5 mb-3">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class="col-sm-5 mb-3">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+    </dl>
+</div>

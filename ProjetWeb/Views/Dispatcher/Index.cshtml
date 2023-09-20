@@ -1,0 +1,72 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<ProjetWeb.ViewModels.OrderListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="fw-bold text-decoration-underline">Liste des commandes</h1>
+<p class="alert-success blockquote">@TempData["message"]</p>
+<table class="table table-striped w-75 bg-white">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                Début du transport
+            </th>
+            <th scope ="col">
+                Arriver souhaité
+            </th>
+            <th scope="col">
+                Adresse source
+            </th>
+            <th scope="col">
+                Adresse destination
+            </th>
+            <th scope="col">
+                Contenu
+            </th>
+            <th>
+                Nom du client
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameCustomer)
+                </td>
+                <td>
+                    @if (!item.BadPayer)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/img/edit.png" width="30px" height="30px" /></a>
+                    }
+                    |<a asp-action="Details" asp-route-id="@item.Id"><img src="~/img/detail.png" width="30px" height="30px" /></a>
+                </td>
+             </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    setTimeout(function () {
+        window.location.reload();
+    }, 5000);
+</script>

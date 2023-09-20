@@ -1,0 +1,16 @@
+﻿@model RegisterModel
+
+<div id="CustomerForm">
+
+    <div class="form-floating mx-auto p-2">
+        <input asp-for="Input.CompanyName" class="form-control" autocomplete="username" aria-required="true" value="" />
+        <label asp-for="Input.CompanyName"></label>
+        <span asp-validation-for="Input.CompanyName" class="text-danger"></span>
+    </div>
+
+    <div class="form-floating mx-auto p-2">
+        <input asp-for="Input.CompanyAddr" class="form-control" autocomplete="username" aria-required="true" value="" />
+        <label asp-for="Input.CompanyAddr" class="form-label"></label>
+        <span asp-validation-for="Input.CompanyAddr" class="text-danger"></span>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model ProjetWeb.ViewModels.EditOrderViewModel
+
+@{
+    ViewData["Title"] = "Edit Order";
+}
+
+<h1 class="fw-bold text-decoration-underline">Accepter la Commande</h1>
+<a class="w-25 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<h4>Attribuer un camion et un chauffeur à la commande</h4>
+<p class="alert-danger blockquote">@ViewBag.Message</p>
+@if (ViewBag.Truck != null && ViewBag.Truck.Count == 0)
+{
+    <p class="alert-danger blockquote"> aucun camion n'est disponible</p>
+}
+@if (ViewBag.Driver != null && ViewBag.Driver.Count == 0)
+{
+     <p class="alert-danger blockquote"> aucun chauffeur n'est disponible</p>
+}
+<div class="row">
+    <div>
+        <form asp-action="Edit" class="border border-primary border-4 rounded-3 bg-white">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdOrder" />
+            <div class="form-floating mx-auto p-2">
+                <select asp-for="IdTruck" class="form-control" asp-items="ViewBag.Truck"></select>
+                <label asp-for="IdTruck" class="" aria-required="true">Camion</label>
+                <span asp-validation-for="IdTruck" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <select asp-for="IdDriver" class="form-control" asp-items="ViewBag.Driver"></select>
+                <label asp-for="IdDriver" class="" aria-required="true">Conducteur</label>
+                <span asp-validation-for="IdDriver" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input type="submit" value="Attribuer" class="btn btn-primary p-2" />
+            </div>
+        </form>
+    </div>
+</div>

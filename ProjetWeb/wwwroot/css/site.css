@@ -1,0 +1,27 @@
+html {
+  font-size: 20px;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url("../img/background.png");
+}
+
+/*main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav ul {
+    
+    justify-content: center;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
+nav ul li {
+    padding: 3%;
+}*/

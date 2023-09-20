@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjetWeb.Models.Truck>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="fw-bold text-decoration-underline">Liste des camions</h1>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end w-50">
+    <a class="btn btn-success me-md-2" asp-action="Create"> + ajouter camion </a>
+</div>
+
+<table class="table table-striped w-50 bg-white">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                Marque
+            </th>
+            <th scope="col">
+                Modèle
+            </th>
+            <th scope="col">
+                Plaque
+            </th>
+            <th scope="col">
+                Type
+            </th>
+            <th scope="col">
+                Poids Max (tonne)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Types)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxWeight)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/img/edit.png" width="30px" height="30px" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"><img src="~/img/detail.png" width="30px" height="30px" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/img/delete.png" width="30px" height="30px" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

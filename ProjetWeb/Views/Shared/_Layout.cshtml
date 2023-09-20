@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="utf-8" />
+
+    <<environment include="Development">
+       <link href="~/css/site.css" rel="stylesheet" />
+       <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    </environment>
+
+    <environment exclude="Development">
+         <link href="~/css/site.min.css" rel="stylesheet" />
+         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </environment>
+
+</head>
+<body>
+    
+    <partial name="_LoginPartial" />
+
+    <main class="d-flex flex-column align-items-center">
+        @RenderBody()
+
+        @RenderSection("Scripts", false)
+    </main>
+
+
+    @RenderSection("footer", false)
+
+</body>
+</html>

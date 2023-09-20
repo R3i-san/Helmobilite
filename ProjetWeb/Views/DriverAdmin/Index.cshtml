@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProjetWeb.ViewModels.ListDriverViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="fw-bold text-decoration-underline">Liste des conducteurs</h1>
+<table class="table table-striped w-75 bg-white">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                Nom
+            </th>
+            <th scope="col">
+                Matricule
+            </th>
+            <th scope="col">
+                Email
+            </th>
+            <th scope="col">
+                Permis
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matricule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.License)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/img/edit.png" width="30px" height="30px" /></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"><img src="~/img/detail.png" width="30px" height="30px" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/img/delete.png" width="30px" height="30px" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

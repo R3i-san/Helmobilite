@@ -1,0 +1,106 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Inscription";
+}
+
+<h1 class="fw-bold text-decoration-underline">@ViewData["Title"]</h1>
+<h2>choisissez votre role et remplissez les champs</h2>
+
+<div class="col-md-4">
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" class="border border-primary border-4 rounded-3 bg-white" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-floating mx-auto p-2">
+            <select id="selectRole" asp-for="Input.Role" class="form-control" aria-required="true" onchange="changeForm()">
+                <option value="Driver">Chauffeur</option>
+                <option value="Customer">Client</option>
+                <option value="Dispatcher">Dispatcher</option>
+            </select>
+            <label asp-for="Input.Role"></label>
+            <span asp-validation-for="Input.Role" class="text-danger"></span>
+        </div>
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" value="" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div id="Names">
+                <div class="form-floating mx-auto p-2">
+                    <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" value="" />
+                    <label asp-for="Input.FirstName"></label>
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mx-auto p-2">
+                    <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" value="" />
+                    <label asp-for="Input.LastName"></label>
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mx-auto p-2">
+                    <input asp-for="Input.Matricule" class="form-control" autocomplete="username" aria-required="true" value="" />
+                    <label asp-for="Input.Matricule"></label>
+                    <span asp-validation-for="Input.Matricule" class="text-danger"></span>
+                </div>
+            </div>
+
+            <partial name="_DriverForm"></partial>
+
+            <partial name="_CustomerForm"></partial>
+
+            <partial name="_DispatcherForm"></partial>
+
+
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" value="" />
+                <label asp-for="Input.Password" class="form-label"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" value="" />
+                <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="p-2">
+                <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary p-2">s'inscrire</button>
+            </div>
+    </form>
+</div>
+
+<script>
+    changeForm()
+    function changeForm(){
+
+        let form = document.getElementById("registerForm")
+        let select = document.getElementById("selectRole");
+        
+        document.getElementById("DispatcherForm").style.display = 'none'
+        document.getElementById("CustomerForm").style.display = 'none';
+        document.getElementById("DriverForm").style.display = 'none';
+        document.getElementById("Names").style.display = 'none'
+
+        if(select.value === "Driver"){
+            document.getElementById("DriverForm").style.display = 'block';
+            document.getElementById("Names").style.display = 'block';
+
+        } else if (select.value === "Customer") { 
+            document.getElementById("CustomerForm").style.display = 'block';
+
+        } else if (select.value === "Dispatcher") {
+            document.getElementById("DispatcherForm").style.display = 'block';         
+            document.getElementById("Names").style.display = 'block';
+        
+        }
+    }
+   
+</script>
+
+<div class="row">
+ 
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

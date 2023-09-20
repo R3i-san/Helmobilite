@@ -1,0 +1,52 @@
+﻿@model ProjetWeb.Models.Order
+
+<h1 class="fw-bold text-decoration-underline">Finaliser la commande</h1>
+<a class="w-25 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<div class="col-md-4">
+    <form asp-action="Confirm" class="border border-primary border-4 rounded-3 bg-white" method="post">
+        <input asp-for="@Model.Id" name="Id" type="hidden" />
+        <div class ="form-floating mx-auto p-2">
+            <select id="state" asp-for="@Model.Delivered" name="State"  class="form-control" aria-required="true" onchange="changeForm()">
+                <option value="Delivered">Livrée</option>
+                <option value="Undelivered">Non livrée</option>
+            </select>
+            <label asp-for="@Model.Delivered"></label>
+        </div>
+        <div id="reason" class="form-floating mx-auto p-2">
+            <select asp-for="@Model.Comment" name="CommentFailed" class="form-control" aria-required="true" >
+                <option value="Sickness">Maladie</option>
+                <option value="Accident">Accident</option>
+                <option value="Missing">Client absent</option>
+                <option value="Impossible">Livraison impossible</option>
+            </select>
+            <label asp-for="@Model.Comment"></label>
+        </div>
+        <div id="comment" class="form-floating mx-auto p-2">
+            <textarea asp-for="@Model.Comment" name="CommentSucess" class="form-control" aria-required="true"> </textarea>
+            <label asp-for="@Model.Comment"></label>
+        </div>
+        <div class="form-floating mx-auto p-2">
+            <button type="submit" class="btn btn-primary p-2">Valider</button>
+        </div>
+        </form>
+</div>
+
+<script>
+    changeForm()
+    function changeForm(){
+
+        let select = document.getElementById("state");
+
+        document.getElementById("reason").style.display = 'none'
+        document.getElementById("comment").style.display = 'none'
+
+        if(state.value === "Delivered"){
+            document.getElementById("comment").style.display = 'block'
+            
+        } else {
+            document.getElementById("reason").style.display = 'block'
+            
+        }
+    }
+
+</script>

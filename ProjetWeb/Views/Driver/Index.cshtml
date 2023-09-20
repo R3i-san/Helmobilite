@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ProjetWeb.Models.Order>
+@{
+    ViewData["Title"] = "Commandes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="fw-bold text-decoration-underline">Toutes les commandes</h1>
+
+<div class="justify-content-start w-75 col-12">
+    <p class="text-black">
+        Filtrer les commandes par :
+    </p>
+    <a asp-action="Index" class="btn btn-primary"> Toutes</a> |
+    <a asp-action="Index" class="btn btn-primary" asp-route-state="pending">En cours</a> |
+    <a asp-action="Index" class="btn btn-primary" asp-route-state="delivered">Livrées</a> |
+    <a asp-action="Index" class="btn btn-primary" asp-route-state="undelivered">Non livrées</a>
+</div>
+
+<table class="table table-striped w-75 bg-white">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Delivered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @if (item.Comment == null)
+                    {
+                        <form asp-action="EndOrder">  
+                            <input asp-for="@item.Id" name="id"  type="hidden"/>
+                            <button type="submit" class="btn btn-primary">Finaliser</button>
+                        </form>
+                    } 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

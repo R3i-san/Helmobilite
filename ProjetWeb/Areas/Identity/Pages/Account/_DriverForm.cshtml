@@ -1,0 +1,14 @@
+﻿@model RegisterModel
+
+
+<div id="DriverForm">
+
+    <div class="form-floating mx-auto p-2">
+        <select asp-for="Input.License" class="form-control" aria-required="true">
+            <option>Permis C</option>
+            <option>Permis CE</option>
+        </select>
+        <label asp-for="Input.License" class="form-label"></label>
+        <span asp-validation-for="Input.License" class="text-danger"></span>
+    </div>
+</div>

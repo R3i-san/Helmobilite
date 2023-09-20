@@ -1,0 +1,49 @@
+﻿@model ProjetWeb.Models.Order
+
+@using ProjetWeb.Models
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="fw-bold text-decoration-underline">Faire une commande</h1>
+<a class="w-50 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<div class="w-25 row">
+    <div>
+        <form asp-action="Create" class="border border-primary border-4 rounded-3 bg-white">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="StartDate" class="form-control" />
+                <label asp-for="StartDate" class="control-label"></label>
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="EndDate" class="form-control" />
+                <label asp-for="EndDate" class="control-label"></label>
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="Source" class="form-control" />
+                <label asp-for="Source" class="control-label"></label>
+                <span asp-validation-for="Source" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <input asp-for="Destination" class="form-control" />
+                <label asp-for="Destination" class="control-label"></label>
+                <span asp-validation-for="Destination" class="text-danger"></span>
+            </div>
+            <div class="form-floating mx-auto p-2">
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <label asp-for="Content" class="control-label"></label>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mx-auto p-2">
+                <input type="submit" value="Commander" class="btn btn-primary p-2" />
+            </div>
+        </form>
+    </div>
+</div>
+

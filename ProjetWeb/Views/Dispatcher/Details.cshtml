@@ -1,0 +1,72 @@
+﻿@model ProjetWeb.ViewModels.DetailsOrderDispatcherViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1 class="fw-bold text-decoration-underline pb-3">Détail de la commande</h1>
+<a class="w-50 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<div class="w-50 bg-white border border-3 border-primary rounded-3 p-2">
+    <div class="d-flex justify-content-between">
+        @if (Model.BadPayer) {
+            <h2 class="bg-danger pb-3">Commande de @Model.NameCustomer (Mauvais payeur)</h2>
+        }else{
+            <h2 class ="pb-3">Commande de @Model.NameCustomer</h2>
+        }
+    
+        @if (!Model.BadPayer)
+        {
+            <a class="p-3" asp-action="Edit" asp-route-id="@Model?.IdOrder"><img src="~/img/edit.png" width="50px" height="50px" /></a>
+        }
+    </div>
+    
+    <h3 class="pb-3">Information sur le client</h3>
+    <dl class="row">
+        <dt class="col-sm-5">
+            Email du Client
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.EmailCustomer)
+        </dd>
+        <dt class="col-sm-5">
+            Adresse du client
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.AddressCustomer)
+        </dd>
+    </dl>
+    <h3 class="pb-3">Information sur la commande</h3>
+    <dl class="row">
+        <dt class="col-sm-5">
+            date de début
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-5">
+            date d'arriver espèrer
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class="col-sm-5">
+            Adresse de chargement
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+        <dt class="col-sm-5">
+            Adresse de destination
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+        <dt class="col-sm-5">
+            Contenu
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Content)
+        </dd> 
+    </dl>
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ProjetWeb.Models.Order>
+
+@{
+    ViewData["Title"] = "Statistiques";
+}
+
+<h1 class="fw-bold text-decoration-underline">@ViewData["Title"]</h1>
+
+<div class="w-75 justify-content-start col-12">
+    <a asp-action="Index" class="btn btn-primary" asp-route-filter="Driver">Chauffeur</a> |
+    <a asp-action="Index" class="btn btn-primary" asp-route-filter="Customer">Client</a> |
+    <a asp-action="Index" class="btn btn-primary" asp-route-filter="Date">Date</a>
+
+    <p>Nombre de livraisons effectuées pour ce filtre : @Model.Count()</p>
+    
+    @Html.PartialAsync( "_AdminStatFilter",
+    new ProjetWeb.ViewModels.StatFilterViewModel { FilterName = ViewData["Filter"]?.ToString()}).Result
+
+</div>
+<table class="table table-striped w-75 bg-white">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Delivered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Delivered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+﻿@model ProjetWeb.Models.Truck
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class ="fw-bold text-decoration-underline pb-3">Delete</h1>
+<a class="w-50 text-decoration-none text-black pb-2" asp-action="Index"><img src="~/img/back.png" width="30px" height="30px" />Retour à la liste</a>
+<h3>etes-vous sur de vouloir supprimer ce camion ?</h3>
+<div class="w-50 bg-white border border-3 border-primary rounded-3 p-2">
+    <dl class="row">
+        <dt class="col-sm-5">
+            Marque
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <dt class="col-sm-5">
+            Modele
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class="col-sm-5">
+            Plaque
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Plate)
+        </dd>
+        <dt class="col-sm-5">
+            Type de license
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.Types)
+        </dd>
+        <dt class="col-sm-5">
+            Poids max en tonne
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.MaxWeight)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>

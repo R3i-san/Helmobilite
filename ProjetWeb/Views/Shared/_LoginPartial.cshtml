@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Identity
+@using ProjetWeb.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<nav class="list-inline w-100 p-3 navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="nav navbar navbar-left d-flex d-inline-flex w-100 p-3">
+        <li class="nav-item d-inline-flex  align-items-center mr-2">
+            <a class="nav-link text-dark display-6" asp-area="" asp-controller="Home" asp-action="Index">HELMOBilité</a>
+        </li>
+        <div class="justify-content-end custom-line">
+            @if (SignInManager.IsSignedIn(User))
+            {
+        
+                    @if (User.IsInRole("Customer"))
+                    {
+                        <partial name="_CustomerNav"></partial>
+                    } else if(User.IsInRole("Driver")){
+                        <partial name="_DriverNav"></partial>
+                    } else if(User.IsInRole("Dispatcher")){
+                        <partial name="_DispatcherNav"></partial>
+                    } else if(User.IsInRole("Admin")){
+                        <partial name="_AdminNav"></partial>
+                    }
+                    <li class="nav-item d-inline-flex  align-items-center mr-2">
+                        <a id="manage" class="nav-link link-primary" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+                    </li>
+                    <li class="nav-item d-inline-flex">
+                       <form id="logoutForm" class="nav-item d-inline-flex  align-items-center mr-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="nav-link btn btn-link link-primary">Se déconnecter</button>
+                        </form>
+                    </li>
+            }
+            else
+            {
+                    <li class="nav-item d-inline-flex  align-items-center mr-2">
+                        <a class="nav-link link-primary" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                    <li class="nav-item d-inline-flex  align-items-center mr-2">
+                        <a class="nav-link link-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
+      
+            }
+        </div>
+    </ul>
+</nav>
